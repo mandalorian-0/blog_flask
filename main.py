@@ -7,6 +7,16 @@ def get_posts():
     data = res.json()
     return data
 
+def get_specific_post(id_lookup: int):
+    all_posts = get_posts()
+    searched_post = {}
+
+    for post in all_posts:
+        if post["id"] == id_lookup:
+            searched_post = post
+            break
+    return searched_post
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -14,9 +24,10 @@ def home():
     data = get_posts()
     return render_template("index.html", posts=data)
 
-@app.route("/posts/<int:id>")
-def get_post():
-    return render_template("post.html")
+@app.route("/posts/<int:post_id>")
+def get_post(post_id):
+    post = get_specific_post(post_id)
+    return render_template("post.html", post=post)
 
 if __name__ == "__main__":
     app.run(debug=True)
