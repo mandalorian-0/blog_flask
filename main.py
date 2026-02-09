@@ -15,7 +15,7 @@ def home():
     return render_template("index.html", posts=data)
 
 @app.route("/posts/<int:id>")
-def all_posts():
+def get_post():
     return render_template("post.html")
 
 if __name__ == "__main__":
