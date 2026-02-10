@@ -6,7 +6,7 @@ from post import Post
 
 cached_posts = None
 
-def get_data():
+def fetch_data():
     res = requests.get("https://api.npoint.io/f988fe2f89471cfb558e")
     res.raise_for_status()
     data = res.json()
@@ -19,7 +19,7 @@ def get_posts():
 
     try:
         posts_objects = []
-        posts_data = get_data()
+        posts_data = fetch_data()
 
         for post in posts_data:
             body_to_html = markdown.markdown(post["body"])
