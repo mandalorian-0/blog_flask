@@ -18,6 +18,7 @@
                     <h2>{{ post.title }}</h2>
                     <em>{{ post.author }}</em>
                     <p class="text">{{ post.description }} </p>
+                    <span class="info">Post by <span>{{ post.author }}</span> on {{ post.date }}</span>
                     <a href="{{ url_for('get_post', slug=post.slug) }}">Read</a>
                 </div>
             </div>
