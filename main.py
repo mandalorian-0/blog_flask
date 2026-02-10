@@ -43,12 +43,12 @@ def get_specific_post(post_slug: str):
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/blog')
 def home():
     data = get_posts()
     return render_template("index.html", posts=data)
 
-@app.route("/posts/<slug>")
+@app.route("/blog/posts/<slug>")
 def get_post(slug: str):
     post = get_specific_post(slug)
 
