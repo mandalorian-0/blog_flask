@@ -1,11 +1,23 @@
 import requests
 from flask import Flask, render_template
 
-def get_posts():
+from post import Post
+
+def get_data():
     res = requests.get("https://api.npoint.io/c790b4d5cab58020d391")
     res.raise_for_status()
     data = res.json()
     return data
+
+def get_posts():
+    posts_objects = []
+    posts_data = get_data()
+
+    for post in posts_data:
+        post_object = Post(post["title"], post["body"], post["author"])
+        posts_objects.append(post_object)
+
+    return posts_objects
 
 def get_specific_post(id_lookup: int):
     all_posts = get_posts()
