@@ -6,11 +6,13 @@ from post import Post
 
 cached_posts = None
 
+
 def fetch_data():
     res = requests.get("https://api.npoint.io/f988fe2f89471cfb558e")
     res.raise_for_status()
     data = res.json()
     return data
+
 
 def get_posts():
     global cached_posts
@@ -35,18 +37,22 @@ def get_posts():
         print(f"Error processing posts: {e}")
         return []
 
+
 def get_specific_post(post_slug: str):
     posts = get_posts()
     post = next((post for post in posts if post.slug == post_slug), None)
 
     return post
 
+
 app = Flask(__name__)
+
 
 @app.route('/blog')
 def home():
     data = get_posts()
     return render_template("index.html", posts=data)
+
 
 @app.route("/blog/posts/<slug>")
 def get_post(slug: str):
@@ -56,6 +62,7 @@ def get_post(slug: str):
         return "Post not found", 404
 
     return render_template("post.html", post=post)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
