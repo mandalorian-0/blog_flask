@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "Lato";
+  src: url("/static/assets/fonts/Lato/fonts/Lato-Light.woff2") format("woff2"),
+       url("/static/assets/fonts/Lato/fonts/Lato-Regular.woff2") format("woff2"),
+       url("/static/assets/fonts/Lato/fonts/Lato-Medium.woff2") format("woff2"),
+       url("/static/assets/fonts/Lato/fonts/Lato-Bold.woff2") format("woff2");
+  font-weight: 300 400 500 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 body{
  background: #efeff3;
  margin: 0;
@@ -44,8 +55,10 @@ body{
 }
 
 .card h2 {
-  font-size:21px;
-  font-weight:500;
+  font-size: 21px;
+  /*font-weight:500;*/
+  font-family:  Lato, serif;
+  font-weight: 700;
 }
 
 .card h2 a {

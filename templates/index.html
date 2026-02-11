@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Personal Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
 </head>
 <body>
     <div class="wrapper">
@@ -16,7 +16,7 @@
             <div class="content">
                 <div class="card">
                     <h2>{{ post.title }}</h2>
-                    <em>{{ post.author }}</em>
+{#                    <em>{{ post.author }}</em>#}
                     <p class="text">{{ post.description }} </p>
                     <span class="info">Post by <span>{{ post.author }}</span> on {{ post.date }}</span>
                     <a href="{{ url_for('get_post', slug=post.slug) }}">Read</a>
