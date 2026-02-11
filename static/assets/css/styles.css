@@ -4,7 +4,7 @@
        url("/static/assets/fonts/Lato/fonts/Lato-Regular.woff2") format("woff2"),
        url("/static/assets/fonts/Lato/fonts/Lato-Medium.woff2") format("woff2"),
        url("/static/assets/fonts/Lato/fonts/Lato-Bold.woff2") format("woff2");
-  font-weight: 300 400 500 700;
+  font-weight: 300 700;
   font-style: normal;
   font-display: swap;
 }
