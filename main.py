@@ -1,5 +1,6 @@
 import markdown
 import requests
+from datetime import datetime
 from flask import Flask, render_template
 
 from post import Post
@@ -24,10 +25,12 @@ def get_posts():
         posts_data = fetch_data()
 
         for post in posts_data:
-            body_to_html = markdown.markdown(post["body"])
+            post["body"] = markdown.markdown(post["body"])
+
+            date_to_dt_obj = datetime.strptime(post["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+            post["created_at"] = date_to_dt_obj.strftime("%A %d, %Y")
             
-            post_object = Post(post["title"], body_to_html, post["description"], post["author"])
-            posts_objects.append(post_object)
+            posts_objects.append(post)
 
         cached_posts = posts_objects
         return cached_posts
