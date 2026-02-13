@@ -25,6 +25,7 @@ def get_posts():
 
         for post in posts_data:
             body_to_html = markdown.markdown(post["body"])
+            
             post_object = Post(post["title"], body_to_html, post["description"], post["author"])
             posts_objects.append(post_object)
 

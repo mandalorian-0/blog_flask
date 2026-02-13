@@ -3,8 +3,28 @@
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 400;
-    src: url("static/assets/fonts/open-sans-v44-latin-regular.woff2")
+    src: url("/static/assets/fonts/open-sans-v44-latin-regular.woff2")
         format("woff2");
+}
+
+/* bricolage-grotesque-500 - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Bricolage Grotesque";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/static/assets/fonts/bricolage-grotesque-v9-latin-500.woff2")
+        format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* bricolage-grotesque-700 - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Bricolage Grotesque";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/static/assets/fonts/bricolage-grotesque-v9-latin-700.woff2")
+        format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 *,
@@ -34,29 +54,33 @@ body {
     overflow: hidden;
 }
 
-.top {
+/* ================== HEADER ============================== */
+.header {
     background: #4e89ae;
     height: 180px;
     border-top: 20px solid #43658b;
 }
 
-.top .title {
+.header .header__title {
     width: 700px;
     margin: 38px auto 0 auto;
 }
 
-.title h1 {
-    font-size: 24px;
+.header__title h1 {
+    font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
+    font-size: calc(24 / 16 * 1rem);
     color: #fff;
     font-weight: 500;
 }
 
-.content {
+/* ======================= Blog Card ======================== */
+
+.blog {
     margin: -80px auto 100px;
     padding-bottom: 20px;
 }
 
-.card {
+.blog__card {
     position: relative;
     background: #fff;
     padding: 50px;
@@ -65,22 +89,17 @@ body {
     box-shadow: 0 2px 4px rgba(100, 100, 100, 0.1);
 }
 
-.card h2 {
-    font-size: 21px;
+.blog__card .blog__title {
+    font-size: calc(21 / 16 * 1rem);
     /*font-weight:500;*/
-    font-family: Lato, serif;
+    font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
     font-weight: 700;
 }
 
-.card h2 a {
-    color: #cc0000;
-    text-decoration: none;
-}
-
-.card .text {
+.blog__card .blog__desc {
     color: #212121;
     margin-top: 20px;
-    font-size: 15px;
+    font-size: calc(15 / 16 * 1rem);
     line-height: 22px;
 }
 

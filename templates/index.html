@@ -1,31 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Personal Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
-</head>
-<body>
-    <div class="wrapper">
-        <div class="top">
-            <div class="title"><h1>My Blog</h1></div>
-        </div>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Personal Blog</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='assets/css/styles.css') }}"
+        />
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <div class="header__title"><h1>My Blog</h1></div>
+            </div>
 
-        {% for post in posts %}
-            <div class="content">
-                <div class="card">
-                    <h2>{{ post.title }}</h2>
-{#                    <em>{{ post.author }}</em>#}
-                    <p class="text">{{ post.description }} </p>
-                    <span class="info">Post by <span>{{ post.author }}</span> on {{ post.date }}</span>
+            {% for post in posts %}
+            <div class="blog">
+                <div class="blog__card">
+                    <h2 class="blog__title">{{ post.title }}</h2>
+                    {# <em>{{ post.author }}</em>#}
+                    <p class="blog__desc">{{ post.description }}</p>
+                    <span class="blog__author__info"
+                        >Post by <span>{{ post.author }}</span> on {{
+                        post.created_at }}</span
+                    >
                     <a href="{{ url_for('get_post', slug=post.slug) }}">Read</a>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-</body>
-<footer>
-    <p>Made with ♥️ by Mandalorian.</p>
-</footer>
+            {% endfor %}
+        </div>
+    </body>
+    <footer>
+        <p>Made with ♥️ by Mandalorian.</p>
+    </footer>
 </html>
