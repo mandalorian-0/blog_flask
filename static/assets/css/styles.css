@@ -1,84 +1,95 @@
 @font-face {
-  font-family: "Lato";
-  src: url("/static/assets/fonts/Lato/fonts/Lato-Light.woff2") format("woff2"),
-       url("/static/assets/fonts/Lato/fonts/Lato-Regular.woff2") format("woff2"),
-       url("/static/assets/fonts/Lato/fonts/Lato-Medium.woff2") format("woff2"),
-       url("/static/assets/fonts/Lato/fonts/Lato-Bold.woff2") format("woff2");
-  font-weight: 300 700;
-  font-style: normal;
-  font-display: swap;
+    font-display: swap;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("static/assets/fonts/open-sans-v44-latin-regular.woff2")
+        format("woff2");
 }
 
-body{
- background: #efeff3;
- margin: 0;
- font-family: 'Raleway', sans-serif;
- -webkit-font-smoothing: antialiased;
-  color:#212121;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
-.wrapper{
-  position: relative;
-  clear:both;
-  margin: 0 auto 75px auto;
-  width: 100%;
-  overflow: hidden;
+
+img {
+    max-width: 100%;
 }
-.top{
-  background: #4e89ae;
-  height: 180px;
-  border-top: 20px solid #43658b;
+
+body {
+    background: #efeff3;
+    margin: 0;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    color: #212121;
+}
+
+.wrapper {
+    position: relative;
+    clear: both;
+    margin: 0 auto 75px auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.top {
+    background: #4e89ae;
+    height: 180px;
+    border-top: 20px solid #43658b;
 }
 
 .top .title {
-  width: 700px;
-  margin: 38px auto 0 auto; 
+    width: 700px;
+    margin: 38px auto 0 auto;
 }
 
 .title h1 {
-  font-size:24px;
-  color:#FFF;
-  font-weight:500;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
 }
 
-.content{
+.content {
     margin: -80px auto 100px;
-  padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 
-.card{
-  position: relative;
-  background: #fff;
-  padding:50px;
-  width: 600px;
-  margin: 20px auto 0 auto;
-  box-shadow: 0 2px 4px rgba(100,100,100,.1);
+.card {
+    position: relative;
+    background: #fff;
+    padding: 50px;
+    width: 600px;
+    margin: 20px auto 0 auto;
+    box-shadow: 0 2px 4px rgba(100, 100, 100, 0.1);
 }
 
 .card h2 {
-  font-size: 21px;
-  /*font-weight:500;*/
-  font-family:  Lato, serif;
-  font-weight: 700;
+    font-size: 21px;
+    /*font-weight:500;*/
+    font-family: Lato, serif;
+    font-weight: 700;
 }
 
 .card h2 a {
-  color:#CC0000;
-  text-decoration:none;
+    color: #cc0000;
+    text-decoration: none;
 }
 
 .card .text {
-  color:#212121;
-  margin-top:20px;
-  font-size:15px;
-  line-height:22px;
+    color: #212121;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 22px;
 }
 
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #43658b;
-  color: white;
-  text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #43658b;
+    color: white;
+    text-align: center;
 }
