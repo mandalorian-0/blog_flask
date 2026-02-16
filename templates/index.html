@@ -17,7 +17,7 @@
             <div class="nav__container">
                 <div class="nav__brand">My Blog</div>
                 <ul class="nav__links">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('blog.home') }}">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -52,7 +52,7 @@
                 <article class="blog__card">
                     <div class="blog__card-header">
                         <h2 class="blog__title">
-                            <a href="{{ url_for('get_post', slug=post.slug) }}">{{ post.title }}</a>
+                            <a href="{{ url_for('blog.get_post', slug=post.slug) }}">{{ post.title }}</a>
                         </h2>
                         <div class="blog__meta">
                             <span class="blog__author__info">
@@ -73,7 +73,7 @@
                     </div>
                     
                     <div class="blog__card-footer">
-                        <a href="{{ url_for('get_post', slug=post.slug) }}" class="blog__read-more">
+                        <a href="{{ url_for('blog.get_post', slug=post.slug) }}" class="blog__read-more">
                             Read More
                         </a>
                     </div>
@@ -93,7 +93,7 @@
                     
                     <div>
                         <ul class="footer__links">
-                            <li><a href="{{ url_for('home') }}">Home</a></li>
+                            <li><a href="{{ url_for('blog.home') }}">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#archive">Archive</a></li>
                             <li><a href="#contact">Contact</a></li>
