@@ -1,72 +1,8 @@
-import markdown
-import requests
-from datetime import datetime
-from flask import Flask, render_template
-
-from post import Post
-
-cached_posts = None
-
-
-def fetch_data():
-    res = requests.get("https://api.npoint.io/f988fe2f89471cfb558e")
-    res.raise_for_status()
-    data = res.json()
-    return data
-
-
-def get_posts():
-    global cached_posts
-    if cached_posts is not None:
-        return cached_posts
-
-    try:
-        posts_objects = []
-        posts_data = fetch_data()
-
-        for post in posts_data:
-            post["body"] = markdown.markdown(post["body"])
-
-            date_to_dt_obj = datetime.strptime(post["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-            post["created_at"] = date_to_dt_obj.strftime("%A %d, %Y")
-            
-            posts_objects.append(post)
-
-        cached_posts = posts_objects
-        return cached_posts
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching blog posts: {e}")
-        return []
-    except Exception as e:
-        print(f"Error processing posts: {e}")
-        return []
-
-
-def get_specific_post(post_slug: str):
-    posts = get_posts()
-    post = next((post for post in posts if post.slug == post_slug), None)
-
-    return post
-
+from flask import Flask
+from routes.blog_routes import blog_bp
 
 app = Flask(__name__)
-
-
-@app.route('/blog')
-def home():
-    data = get_posts()
-    return render_template("index.html", posts=data)
-
-
-@app.route("/blog/posts/<slug>")
-def get_post(slug: str):
-    post = get_specific_post(slug)
-
-    if not post:
-        return "Post not found", 404
-
-    return render_template("post.html", post=post)
-
+app.register_blueprint(blog_bp)
 
 if __name__ == "__main__":
     app.run(debug=True)
