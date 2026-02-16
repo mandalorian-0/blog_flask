@@ -2,29 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ post.title }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ post.description }}">
+    <title>{{ post.title }} - My Blog</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
 </head>
 <body>
+    <!-- Sticky Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <div class="nav__brand">My Blog</div>
+            <ul class="nav__links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="wrapper">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span class="breadcrumb__separator">/</span>
+            <span>{{ post.title }}</span>
+        </nav>
 
-        <div class="top">
-            <div class="title">
-                <h1>My Blog</h1>
-                <a href="{{ url_for('home') }}">Back to homepage</a>
-            </div>
-        </div>
-        <div class="content">
-            <div class="card">
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.body | safe }}</p>
+        <!-- Post Content -->
+        <article class="post">
+            <header class="post__header">
+                <h1 class="post__title">{{ post.title }}</h1>
+                <div class="post__meta">
+                    <span class="post__author">
+                        👤 By <strong>{{ post.author }}</strong>
+                    </span>
+                    <span>•</span>
+                    <span class="post__date">
+                        📅 {{ post.created_at }}
+                    </span>
+                    <span>•</span>
+                    <span class="post__reading-time">
+                        {% set word_count = post.body.split()|length %}
+                        {% set reading_time = (word_count / 200)|int + 1 %}
+                        📖 {{ reading_time }} min read
+                    </span>
+                </div>
+            </header>
+
+            <div class="post__content">
+                {{ post.body | safe }}
             </div>
 
-        </div>
+            <!-- Social Share Section -->
+            <div class="post__share">
+                <h3 class="post__share-title">Share this article</h3>
+                <div class="post__share-buttons">
+                    <a href="#" class="share-btn share-btn--twitter" aria-label="Share on Twitter">
+                        🐦 Twitter
+                    </a>
+                    <a href="#" class="share-btn share-btn--facebook" aria-label="Share on Facebook">
+                        📘 Facebook
+                    </a>
+                    <a href="#" class="share-btn share-btn--linkedin" aria-label="Share on LinkedIn">
+                        💼 LinkedIn
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Related Posts Section -->
+        <section class="related-posts">
+            <h2 class="related-posts__title">You Might Also Like</h2>
+            <div class="related-posts__grid">
+                <!-- Placeholder for related posts - these would be dynamically populated -->
+                <div class="blog__card" style="animation-delay: 0.1s;">
+                    <div class="blog__card-header">
+                        <h3 class="blog__title">
+                            <a href="{{ url_for('home') }}">Explore More Articles</a>
+                        </h3>
+                        <div class="blog__meta">
+                            <span class="blog__reading-time">Various topics</span>
+                        </div>
+                    </div>
+                    <div class="blog__card-content">
+                        <p class="blog__desc">Check out our homepage for more interesting articles and stories.</p>
+                    </div>
+                    <div class="blog__card-footer">
+                        <a href="{{ url_for('home') }}" class="blog__read-more">
+                            View All Posts
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer__container">
+            <div class="footer__content">
+                <div>
+                    <div class="footer__brand">My Blog</div>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 0.5rem;">Sharing knowledge and experiences</p>
+                </div>
+                
+                <div>
+                    <ul class="footer__links">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#archive">Archive</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    
+                    <div class="footer__social" style="margin-top: 1rem;">
+                        <a href="#" class="footer__social-link" aria-label="Twitter">𝕏</a>
+                        <a href="#" class="footer__social-link" aria-label="GitHub">GH</a>
+                        <a href="#" class="footer__social-link" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__copyright">
+                <p>Made with ♥️ by Mandalorian &copy; {{ now().year if now else '2024' }}</p>
+            </div>
+        </div>
+    </footer>
 </body>
-<footer>
-    <p>Made with ♥️ By Mandalorian.</p>
-</footer>
 </html>

@@ -2,39 +2,115 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Personal Blog</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Raleway"
-            rel="stylesheet"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="A modern blog sharing insights, stories, and experiences" />
+        <title>My Personal Blog - Thoughts & Stories</title>
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>" />
         <link
             rel="stylesheet"
             href="{{ url_for('static', filename='assets/css/styles.css') }}"
         />
     </head>
     <body>
-        <div class="wrapper">
-            <div class="header">
-                <div class="header__title"><h1>My Blog</h1></div>
+        <!-- Sticky Navigation -->
+        <nav class="nav">
+            <div class="nav__container">
+                <div class="nav__brand">My Blog</div>
+                <ul class="nav__links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
+        </nav>
 
-            {% for post in posts %}
-            <div class="blog">
-                <div class="blog__card">
-                    <h2 class="blog__title">{{ post.title }}</h2>
-                    {# <em>{{ post.author }}</em>#}
-                    <p class="blog__desc">{{ post.description }}</p>
-                    <span class="blog__author__info"
-                        >Post by <span>{{ post.author }}</span> on {{
-                        post.created_at }}</span
-                    >
-                    <a href="{{ url_for('get_post', slug=post.slug) }}">Read</a>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">Welcome to My Blog</h1>
+                <p class="hero__subtitle">Exploring ideas, sharing stories, and documenting the journey</p>
+                
+                <!-- Search Bar (Visual) -->
+                <div class="hero__search">
+                    <div class="search-bar">
+                        <span class="search-bar__icon">🔍</span>
+                        <input 
+                            type="text" 
+                            class="search-bar__input" 
+                            placeholder="Search articles..."
+                            aria-label="Search articles"
+                        />
+                    </div>
                 </div>
             </div>
-            {% endfor %}
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <div class="wrapper">
+            <div class="blog-grid">
+                {% for post in posts %}
+                <article class="blog__card">
+                    <div class="blog__card-header">
+                        <h2 class="blog__title">
+                            <a href="{{ url_for('get_post', slug=post.slug) }}">{{ post.title }}</a>
+                        </h2>
+                        <div class="blog__meta">
+                            <span class="blog__author__info">
+                                By <span>{{ post.author }}</span>
+                            </span>
+                            <span>•</span>
+                            <span class="blog__date">{{ post.created_at }}</span>
+                            <span class="blog__reading-time">
+                                {% set word_count = post.description.split()|length + post.body.split()|length %}
+                                {% set reading_time = (word_count / 200)|int + 1 %}
+                                {{ reading_time }} min read
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="blog__card-content">
+                        <p class="blog__desc">{{ post.description }}</p>
+                    </div>
+                    
+                    <div class="blog__card-footer">
+                        <a href="{{ url_for('get_post', slug=post.slug) }}" class="blog__read-more">
+                            Read More
+                        </a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
         </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer__container">
+                <div class="footer__content">
+                    <div>
+                        <div class="footer__brand">My Blog</div>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin-top: 0.5rem;">Sharing knowledge and experiences</p>
+                    </div>
+                    
+                    <div>
+                        <ul class="footer__links">
+                            <li><a href="{{ url_for('home') }}">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#archive">Archive</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                        
+                        <div class="footer__social" style="margin-top: 1rem;">
+                            <a href="#" class="footer__social-link" aria-label="Twitter">𝕏</a>
+                            <a href="#" class="footer__social-link" aria-label="GitHub">GH</a>
+                            <a href="#" class="footer__social-link" aria-label="LinkedIn">in</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer__copyright">
+                    <p>Made with ♥️ by Mandalorian &copy; {{ now().year if now else '2024' }}</p>
+                </div>
+            </div>
+        </footer>
     </body>
-    <footer>
-        <p>Made with ♥️ by Mandalorian.</p>
-    </footer>
 </html>
