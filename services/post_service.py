@@ -35,6 +35,6 @@ def get_posts():
 
 def get_specific_post(post_slug: str):
     posts = get_posts()
-    post = next((post for post in posts if post.slug == post_slug), None)
+    post = next((post for post in posts if post['slug'] == post_slug), None)
 
     return post
